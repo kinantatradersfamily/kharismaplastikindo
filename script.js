@@ -6,11 +6,25 @@ function handleUrlChange() {
     }
 }
 
+console.log('qweqw')
+
 window.addEventListener('popstate', handleUrlChange);
+document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+        var href = e.target.getAttribute('href');
+        
+        if (href.endsWith('.html')) {
+            e.preventDefault();
+            
+            var newHref = href.slice(0, -5);
+            window.location.href = newHref;
+        }
+    }
+});
+
 
 console.log(window.location.pathname)
 
 $(function(){
-    $("#header").load("component/navbar.html");
     $('#footer').load("component/footer.html")
   });
